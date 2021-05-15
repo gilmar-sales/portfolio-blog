@@ -13,7 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
       <NavigationContainer>
         <Content>
           <Link href="/">
-            <NavItem style={{ color: active == "home" ? "red" : "white" }}>
+            <NavItem style={{ color: active == "home" && "#0c729e" }}>
               início
             </NavItem>
           </Link>
@@ -22,12 +22,12 @@ const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
           </Link>
 
           <Link href="/projects">
-            <NavItem style={{ color: active == "projects" ? "red" : "white" }}>
+            <NavItem style={{ color: active == "projects" && "#0c729e" }}>
               projetos
             </NavItem>
           </Link>
           <Link href="/blog">
-            <NavItem style={{ color: active == "blog" ? "red" : "white" }}>
+            <NavItem style={{ color: active == "blog" && "#0c729e" }}>
               blog
             </NavItem>
           </Link>
