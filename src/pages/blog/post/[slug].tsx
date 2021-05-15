@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import emoji from "remark-emoji";
+import hightlight from "remark-highlight.js";
+import "highlight.js/styles/github-gist.css";
 
 import { serialize } from "next-mdx-remote/serialize";
 import { postFilePaths, POSTS_PATH } from "../../../config/mdx";
@@ -28,7 +31,7 @@ export const getStaticProps = async ({ params }) => {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [],
+      remarkPlugins: [emoji, hightlight],
       rehypePlugins: [],
     },
     scope: data,
