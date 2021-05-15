@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import { Container } from "./styles";
+import Navigation from "@components/Navigation";
 
 export default function Home() {
   return (
@@ -11,7 +12,34 @@ export default function Home() {
         <meta name="viewport" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      portfolio-blog
+
+      <Navigation active="home">
+        <h1>Atomos</h1>
+        <button>botao</button>
+        <span>aosdkasodk</span>
+        <h1>Moleculas</h1>
+        <div>
+          <button>registrar</button>
+          <button>cancelar</button>
+        </div>
+        <div>
+          <input name="user" />
+          <input name="password" />
+        </div>
+        <h1>Organismos</h1>
+        <form>
+          <div>
+            <input name="user" />
+            <input name="password" />
+          </div>
+          <div>
+            <button>registrar</button>
+            <button>cancelar</button>
+          </div>
+        </form>
+        ecossistema é o protótipo do ambiente
+      </Navigation>
+
       <footer>Gilso</footer>
     </Container>
   );
