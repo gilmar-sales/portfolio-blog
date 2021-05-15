@@ -15,6 +15,7 @@ export const Content = styled.nav`
 
 export const NavItem = styled.a`
   font-size: 1.5rem;
+  font-weight: 600;
   padding: 1rem;
 
   :hover {
