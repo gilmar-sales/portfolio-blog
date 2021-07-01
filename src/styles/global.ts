@@ -2,8 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 body {
-  background-image: url("/grid-2x.png");
+  background-image: url("/grid.svg");
   background-repeat: repeat;
+  background-size: 28px;
   font-family: 'KoHo',-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
