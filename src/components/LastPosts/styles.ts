@@ -24,3 +24,20 @@ export const Content = styled.div`
   width: 100%;
   padding: 1rem;
 `;
+
+export const Post = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const PostTile = styled.h1`
+  cursor: pointer;
+`;
+
+export const Tag = styled.small`
+  background-color: black;
+  color: white;
+  border-radius: 0.2rem;
+  padding: 0.1rem;
+`;
