@@ -9,6 +9,8 @@ import { serialize } from "next-mdx-remote/serialize";
 import { postFilePaths, POSTS_PATH } from "../../../config/mdx";
 import { MDXRemote } from "next-mdx-remote";
 
+import Navigation from "@components/Navigation";
+
 interface PostProps {
   source: any;
   frontMatter: any;
@@ -16,10 +18,10 @@ interface PostProps {
 
 const PostPage: React.FC<PostProps> = ({ source, frontMatter }) => {
   return (
-    <div>
+    <Navigation active="blog">
       <h1>{frontMatter.title}</h1>
       <MDXRemote {...source} />
-    </div>
+    </Navigation>
   );
 };
 
