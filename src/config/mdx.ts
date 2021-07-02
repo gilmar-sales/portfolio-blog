@@ -9,3 +9,8 @@ export const POSTS_PATH = path.join(process.cwd(), "src/posts");
 export const postFilePaths = fs
   .readdirSync(POSTS_PATH)
   .filter((path) => /\.mdx?$/.test(path));
+
+export const postsSlugs = fs
+  .readdirSync(POSTS_PATH)
+  .filter((path) => /\.mdx?$/.test(path))
+  .map((slug) => slug.replace(".mdx", ""));
