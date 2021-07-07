@@ -3,11 +3,12 @@ import path from "path";
 import matter from "gray-matter";
 import emoji from "remark-emoji";
 import hightlight from "remark-highlight.js";
-import "highlight.js/styles/github-gist.css";
 
 import { serialize } from "next-mdx-remote/serialize";
 import { postFilePaths, POSTS_PATH } from "../../../config/mdx";
 import { MDXRemote } from "next-mdx-remote";
+
+import { Container, Box } from "@chakra-ui/react";
 
 import Navigation from "@components/Navigation";
 
@@ -19,8 +20,14 @@ interface PostProps {
 const PostPage: React.FC<PostProps> = ({ source, frontMatter }) => {
   return (
     <Navigation active="blog">
-      <h1>{frontMatter.title}</h1>
-      <MDXRemote {...source} />
+      <Container bg="white" padding="0" maxW="4xl" shadow="md">
+        <Box fontSize="2xl" padding="4" bg="black" color="white" maxW="4xl">
+          {frontMatter.title}
+        </Box>
+        <Box padding="4">
+          <MDXRemote {...source} />
+        </Box>
+      </Container>
     </Navigation>
   );
 };

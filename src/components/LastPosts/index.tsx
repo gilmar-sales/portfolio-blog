@@ -1,31 +1,51 @@
+import { Box, Container, Tag, Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
-import { Container, Title, Content, Post, PostTile, Tag } from "./styles";
+import React from "react";
 
-export default function LastPosts(props) {
+import Post from "@types/post";
+
+interface LastPostsProps {
+  posts: Post[];
+}
+
+const LastPosts: React.FC<LastPostsProps> = (props) => {
   return (
-    <Container>
-      <Title>Postagens recentes</Title>
-      <Content>
+    <Container bg="white" padding="0" maxW="4xl" shadow="md">
+      <Box fontSize="3xl" padding="4" bg="black" color="white">
+        Postagens recentes
+      </Box>
+      <Box padding="4">
         {props.posts.map((post, index) => (
-          <Post key={index}>
-            <div>
-              <Link href={`/blog/post/${post.slug}`}>
-                <PostTile>{post.title}</PostTile>
-              </Link>
-              <small>
-                {new Date(post.date).toLocaleDateString("pt-BR", {
-                  dateStyle: "long",
-                })}
-              </small>
-            </div>
+          <Box
+            key={index}
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Link href={`/blog/post/${post.slug}`}>
+              <ChakraLink fontSize="2xl" fontWeight="extrabold">
+                {post.title}
+              </ChakraLink>
+            </Link>
+            <small>
+              {new Date(post.date).toLocaleDateString("pt-BR", {
+                dateStyle: "long",
+              })}
+            </small>
             <div>
               {post.tags.map((tag, index) => (
-                <Tag key={index}>{tag}</Tag>
+                <Link key={index} href="/">
+                  <Tag colorScheme="blue" marginRight="2" cursor="pointer">
+                    {tag}
+                  </Tag>
+                </Link>
               ))}
             </div>
-          </Post>
+          </Box>
         ))}
-      </Content>
+      </Box>
     </Container>
   );
-}
+};
+
+export default LastPosts;

@@ -1,4 +1,4 @@
-import { NavigationContainer, Content, NavItem } from "./styles";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import Link from "next/link";
 
 import React from "react";
@@ -10,32 +10,58 @@ interface NavigationProps {
 const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
   return (
     <>
-      <NavigationContainer>
-        <Content>
+      <Flex
+        padding={{ sm: "0", md: "2" }}
+        marginBottom="10"
+        justifyContent="flex-end"
+        minW="full"
+      >
+        <Flex
+          w={{ sm: "full", md: "fit-content" }}
+          justifyContent="center"
+          bg="black"
+          color="white"
+        >
           <Link href="/">
-            <NavItem style={{ color: active == "home" && "#87BBFB" }}>
+            <Button
+              colorScheme="black"
+              color={active == "home" && "#87BBFB"}
+              size="lg"
+            >
               início
-            </NavItem>
+            </Button>
           </Link>
           <Link href="/tools">
-            <NavItem style={{ color: active == "tools" && "#87BBFB" }}>
+            <Button
+              colorScheme="black"
+              color={active == "tools" && "#87BBFB"}
+              size="lg"
+            >
               ferramentas
-            </NavItem>
+            </Button>
           </Link>
 
           <Link href="/projects">
-            <NavItem style={{ color: active == "projects" && "#87BBFB" }}>
+            <Button
+              colorScheme="black"
+              color={active == "projects" && "#87BBFB"}
+              size="lg"
+            >
               projetos
-            </NavItem>
+            </Button>
           </Link>
           <Link href="/blog">
-            <NavItem style={{ color: active == "blog" && "#87BBFB" }}>
+            <Button
+              colorScheme="black"
+              color={active == "blog" && "#87BBFB"}
+              size="lg"
+            >
               blog
-            </NavItem>
+            </Button>
           </Link>
-        </Content>
-      </NavigationContainer>
-      <main>{children}</main>
+        </Flex>
+      </Flex>
+      <Box padding="2">{children}</Box>
     </>
   );
 };

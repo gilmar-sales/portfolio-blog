@@ -5,17 +5,37 @@ tags: ["hello", "world"]
 ---
 
 This is an example post. There's another one [here](/posts/example-post).
+:poop:
+:white_check_mark:
 
 ```cpp
 #include <iostream>
 
 using namespace std;
+// main function to inialize the application
+
+/*
+ * oaskdoaskd
+ */
+
+ class Application
+ {
+public:
+    Application(string name) : m_name(name) {}
+    ~Application() = default;
+
+    string get_name() { return m_name; }
+private:
+    string m_name;
+ }
 
 int main(int argc, char** argv)
 {
+    Application app = new Application("hello");
+
     cout << "hello world" << endl;
 
-    return 0
+    return 0;
 }
 
 ```

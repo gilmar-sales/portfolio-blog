@@ -3,7 +3,6 @@ import fs from "fs";
 import { POSTS_PATH, postsSlugs } from "../../../config/mdx";
 
 import matter from "gray-matter";
-import "highlight.js/styles/github-gist.css";
 
 export default async function postsHandler(request, response) {
   const { page, postsPerPage } = request.body;
