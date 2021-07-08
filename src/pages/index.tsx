@@ -1,6 +1,7 @@
-import Head from "next/head";
+import Head from 'next/head';
+import { Image } from '@chakra-ui/react';
 
-import Navigation from "@components/Navigation";
+import Navigation from '@components/Navigation';
 
 export default function Home() {
   return (
@@ -12,6 +13,12 @@ export default function Home() {
       </Head>
 
       <Navigation active="home">
+        <Image
+          width="40"
+          borderRadius="50%"
+          src="https://avatars2.githubusercontent.com/u/7975964"
+          alt="Segun Adebayo"
+        />
         <h1>Atomos</h1>
         <button>botao</button>
         <span>aosdkasodk</span>

@@ -1,8 +1,8 @@
-import { Box, Container, Tag, Link as ChakraLink } from "@chakra-ui/react";
-import Link from "next/link";
-import React from "react";
+import { Box, Container, Tag, Link as ChakraLink } from '@chakra-ui/react';
+import Link from 'next/link';
+import React from 'react';
 
-import Post from "@types/post";
+import Post from '@types/post';
 
 interface LastPostsProps {
   posts: Post[];
@@ -28,8 +28,8 @@ const LastPosts: React.FC<LastPostsProps> = (props) => {
               </ChakraLink>
             </Link>
             <small>
-              {new Date(post.date).toLocaleDateString("pt-BR", {
-                dateStyle: "long",
+              {new Date(post.date).toLocaleDateString('pt-BR', {
+                dateStyle: 'long',
               })}
             </small>
             <div>
