@@ -1,8 +1,8 @@
-import path from "path";
-import fs from "fs";
-import { POSTS_PATH, postsSlugs } from "../../../config/mdx";
+import path from 'path';
+import fs from 'fs';
+import { POSTS_PATH, postsSlugs } from '../../../config/mdx';
 
-import matter from "gray-matter";
+import matter from 'gray-matter';
 
 export default async function postsHandler(request, response) {
   const { page, postsPerPage } = request.body;

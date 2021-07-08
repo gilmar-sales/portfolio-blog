@@ -1,4 +1,4 @@
-import Navigation from "@components/Navigation";
+import Navigation from '@components/Navigation';
 
 const Projects: React.FC = () => {
   return (

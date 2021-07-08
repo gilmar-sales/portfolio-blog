@@ -1,5 +1,5 @@
-import LastPosts from "@components/LastPosts";
-import Navigation from "@components/Navigation";
+import LastPosts from '@components/LastPosts';
+import Navigation from '@components/Navigation';
 
 export default function Blog(props) {
   return (
@@ -12,7 +12,7 @@ export default function Blog(props) {
 }
 
 export async function getServerSideProps(context) {
-  const posts = await (await fetch("http://localhost:3000/api/posts")).json();
+  const posts = await (await fetch('http://localhost:3000/api/posts')).json();
 
   return {
     props: {

@@ -1,7 +1,7 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
-import Link from "next/link";
+import { Box, Button, Flex } from '@chakra-ui/react';
+import Link from 'next/link';
 
-import React from "react";
+import React from 'react';
 
 interface NavigationProps {
   active?: string;
@@ -11,13 +11,13 @@ const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
   return (
     <>
       <Flex
-        padding={{ sm: "0", md: "2" }}
+        padding={{ sm: '0', md: '2' }}
         marginBottom="10"
         justifyContent="flex-end"
         minW="full"
       >
         <Flex
-          w={{ sm: "full", md: "fit-content" }}
+          w={{ sm: 'full', md: 'fit-content' }}
           justifyContent="center"
           bg="black"
           color="white"
@@ -25,7 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
           <Link href="/">
             <Button
               colorScheme="black"
-              color={active == "home" && "#87BBFB"}
+              color={active == 'home' && '#87BBFB'}
               size="lg"
             >
               início
@@ -34,7 +34,7 @@ const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
           <Link href="/tools">
             <Button
               colorScheme="black"
-              color={active == "tools" && "#87BBFB"}
+              color={active == 'tools' && '#87BBFB'}
               size="lg"
             >
               ferramentas
@@ -44,7 +44,7 @@ const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
           <Link href="/projects">
             <Button
               colorScheme="black"
-              color={active == "projects" && "#87BBFB"}
+              color={active == 'projects' && '#87BBFB'}
               size="lg"
             >
               projetos
@@ -53,7 +53,7 @@ const Navigation: React.FC<NavigationProps> = ({ active, children }) => {
           <Link href="/blog">
             <Button
               colorScheme="black"
-              color={active == "blog" && "#87BBFB"}
+              color={active == 'blog' && '#87BBFB'}
               size="lg"
             >
               blog
