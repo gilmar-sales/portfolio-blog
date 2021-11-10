@@ -2,7 +2,7 @@ import { Box, Container, Tag, Link as ChakraLink } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
 
-import Post from '@types/post';
+import Post from 'types/post';
 
 interface LastPostsProps {
   posts: Post[];
