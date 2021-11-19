@@ -10,6 +10,8 @@ const theme = extendTheme({
         color: 'black',
         padding: '0',
         margin: '0',
+        background: 'url(/grid.svg)',
+        backgroundSize: '1.5rem 1.5rem',
         fontFamily:
           'KoHo, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
       },
@@ -19,8 +21,13 @@ const theme = extendTheme({
           outline: 'none',
         },
       },
+      h1: {
+        fontSize: '2.5rem',
+        fontWeight: 'bold',
+      },
       p: {
         marginBottom: '1rem',
+        textIndent: '1.5rem'
       },
       code: {
         bg: '#eeeeee',
