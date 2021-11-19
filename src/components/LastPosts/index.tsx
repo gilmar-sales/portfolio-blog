@@ -1,11 +1,11 @@
-import { Box, Container, Tag, Link as ChakraLink } from '@chakra-ui/react';
-import Link from 'next/link';
-import React from 'react';
+import { Box, Container, Tag, Link as ChakraLink } from '@chakra-ui/react'
+import Link from 'next/link'
+import React from 'react'
 
-import Post from 'types/post';
+import { PostDTO } from 'types/post'
 
 interface LastPostsProps {
-  posts: Post[];
+  posts: PostDTO[]
 }
 
 const LastPosts: React.FC<LastPostsProps> = (props) => {
@@ -45,7 +45,7 @@ const LastPosts: React.FC<LastPostsProps> = (props) => {
         ))}
       </Box>
     </Container>
-  );
-};
+  )
+}
 
-export default LastPosts;
+export default LastPosts

@@ -1,11 +1,11 @@
-import { Box, Container, Tag, Link as ChakraLink } from '@chakra-ui/react';
-import Link from 'next/link';
-import React from 'react';
+import { Box, Container, Tag, Link as ChakraLink } from '@chakra-ui/react'
+import Link from 'next/link'
+import React from 'react'
 
-import Post from 'types/post';
+import { PostDTO } from 'types/post'
 
 interface AllPostsProps {
-  posts: Post[];
+  posts: PostDTO[]
 }
 
 const AllPosts: React.FC<AllPostsProps> = (props) => {
@@ -45,7 +45,7 @@ const AllPosts: React.FC<AllPostsProps> = (props) => {
         ))}
       </Box>
     </Container>
-  );
-};
+  )
+}
 
-export default AllPosts;
+export default AllPosts
