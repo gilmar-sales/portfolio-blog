@@ -1,5 +1,6 @@
-import LastPosts from '@components/LastPosts';
-import Navigation from '@components/Navigation';
+import LastPosts from '@components/LastPosts'
+import Navigation from '@components/Navigation'
+import postService from '@services/postService'
 
 export default function Blog(props) {
   return (
@@ -8,15 +9,15 @@ export default function Blog(props) {
         <LastPosts posts={props.posts}></LastPosts>
       </Navigation>
     </>
-  );
+  )
 }
 
-export async function getServerSideProps(context) {
-  const posts = await (await fetch('http://localhost:3000/api/posts')).json();
+export async function getStaticProps(context) {
+  const posts = postService.findAllPosts()
 
   return {
     props: {
       posts: posts,
     },
-  };
+  }
 }
