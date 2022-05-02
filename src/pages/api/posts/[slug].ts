@@ -1,8 +1,10 @@
-import fs from 'fs';
+import postService from '@services/postService'
+import { PostDTO } from 'types/post'
 
-export default {
-  getPost: async (slug: string) => {
-    return;
-  },
-  getPosts: async () => {},
-};
+export default async function postsHandler(request, response) {
+  const { slug } = request.query
+
+  const post: PostDTO = postService.findPostBySlug(slug)
+
+  return response.send(post)
+}

@@ -1,24 +1,14 @@
-import path from 'path';
-import fs from 'fs';
-import { POSTS_PATH, postsSlugs } from '../../../config/mdx';
+import path from 'path'
+import fs from 'fs'
+import { POSTS_PATH, postsSlugs } from '../../../config/mdx'
 
-import matter from 'gray-matter';
+import matter from 'gray-matter'
+import tagService from '@services/tagService'
 
 export default async function tagsHandler(request, response) {
-    const { page, postsPerPage } = request.body;
+  const { page, tagsPerPage } = request.body
 
-    const tags = {}
+  const tags = tagService.findTagsByPage(page, tagsPerPage)
 
-  postsSlugs.forEach((postSlug) => {
-    const postFilePath = path.join(POSTS_PATH, `${postSlug}.mdx`);
-    const source = fs.readFileSync(postFilePath);
-
-    const { content, data } = matter(source);
-
-    data.tags.forEach((tag) => {
-        tags[tag] = tags[tag] ? [...tags[tag], postSlug] : [postSlug];
-    })
-  });
-
-  return response.send(tags);
+  return response.send(tags)
 }
