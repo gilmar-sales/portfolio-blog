@@ -19,6 +19,7 @@ import Navigation from '@components/Navigation'
 import PostView from '@components/PostView'
 import { PostDTO } from 'types/post'
 import React from 'react'
+import postService from '@services/postService'
 
 const spin = keyframes`
   from { transform: rotate(0deg); }
@@ -34,7 +35,7 @@ export default function Home(props) {
             top="0"
             left="0"
             position="relative"
-            bg="url(bubble.svg)"
+            bg="url(/bubble.svg)"
             bgSize={'200px 200px'}
             width={200}
             height={200}
@@ -67,9 +68,7 @@ export default function Home(props) {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const postsDTOs: PostDTO[] = await (
-    await fetch('http://localhost:3000/api/posts')
-  ).json()
+  const postsDTOs: PostDTO[] = postService.findAllPosts()
 
   const posts = await Promise.all(
     postsDTOs.map(async (postDTO) => {
@@ -90,8 +89,6 @@ export const getStaticProps = async ({ params }) => {
       }
     }),
   )
-
-  console.log(posts)
 
   return {
     props: {
