@@ -49,7 +49,7 @@ const tagsService = () => {
       const start = postsPerPage * (page - 1)
       const end = start + postsPerPage
 
-      return tagsMap[tag]?.posts.slice(start, end)
+      return tagsMap.get(tag)?.posts.slice(start, end)
     },
   }
 }
