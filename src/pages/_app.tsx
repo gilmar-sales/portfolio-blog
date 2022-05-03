@@ -1,6 +1,7 @@
-import Head from 'next/head';
-import { ChakraProvider, extendTheme, Box, Container } from '@chakra-ui/react';
-import '@styles/highlight-dark.css';
+import Head from 'next/head'
+import { ChakraProvider, extendTheme, Box, Container } from '@chakra-ui/react'
+import '@styles/highlight-dark.css'
+import '@styles/table.css'
 
 const theme = extendTheme({
   styles: {
@@ -27,7 +28,7 @@ const theme = extendTheme({
       },
       p: {
         marginBottom: '1rem',
-        textIndent: '1.5rem'
+        textIndent: '1.5rem',
       },
       code: {
         bg: '#eeeeee',
@@ -45,23 +46,12 @@ const theme = extendTheme({
       },
     },
   },
-});
+})
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        ></link>
-
-        <link href="/global.css" rel="stylesheet"></link>
         <meta
           name="viewport"
           content=" width=device-width, initial-scale=1.0, user-scalable=no"
@@ -72,19 +62,14 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ChakraProvider theme={theme}>
-        <Box
-          width="100vw"
-          display={{ sm: 'block', md: 'flex' }}
-          flexDirection="column"
-          alignItems="center"
-        >
+        <Box display="flex" flexDirection="column" alignItems="center">
           <Box width={{ sm: '100%', md: '1024px' }}>
             <Component key="app" {...pageProps} />
           </Box>
         </Box>
       </ChakraProvider>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
