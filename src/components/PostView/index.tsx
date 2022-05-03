@@ -1,13 +1,17 @@
 import React from 'react'
-
-import emoji from 'remark-emoji'
-import hightlight from 'remark-highlight.js'
-
-import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 
-import { Box, Container, Tag, Link as ChakraLink, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Tag,
+  Link as ChakraLink,
+  Text,
+  Flex,
+} from '@chakra-ui/react'
 import { Post } from 'types/post'
+import Link from 'next/link'
+import PostTag from '@components/PostTag'
 
 interface PostViewProps {
   post: Post
@@ -15,28 +19,33 @@ interface PostViewProps {
 
 const PostView: React.FC<PostViewProps> = ({ post }) => {
   return (
-    <Container bg="white" padding="0" maxW="4xl" shadow="md" marginBottom="16">
-      <Box
-        padding="4"
-        bg="black"
-        color="white"
-        display="flex"
-        alignItems="flex-end"
-        justifyContent="space-between"
-        maxW="4xl"
-      >
-        <Text as="span" fontSize="4xl" fontWeight="bold" padding="0">
-          {post.title}
-        </Text>
-        <Text as="span">
+    <Container
+      bg="white"
+      maxW="4xl"
+      shadow="md"
+      border="1px"
+      borderColor="blackAlpha.100"
+      marginBottom="16"
+      padding="0"
+    >
+      <Flex position="relative" bg="black" color="white" padding="1rem">
+        <Link href={`/blog/post/${post.slug}`}>
+          <Text as="span" fontSize="4xl" fontWeight="bold" cursor="pointer">
+            {post.title}
+          </Text>
+        </Link>
+        <Text position="absolute" bottom="0" right="1rem">
           {new Date(post.date).toLocaleDateString('pt-BR', {
             dateStyle: 'medium',
           })}
         </Text>
-      </Box>
-      <Box padding="4" fontSize="xl">
+      </Flex>
+      <Box padding="2rem 4rem" fontSize="xl">
         <MDXRemote {...post.source} />
       </Box>
+      {post.tags.map((tag) => (
+        <PostTag key={tag} tag={tag} />
+      ))}
     </Container>
   )
 }

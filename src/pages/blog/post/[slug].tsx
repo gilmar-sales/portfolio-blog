@@ -1,84 +1,38 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import emoji from 'remark-emoji'
-import hightlight from 'remark-highlight.js'
-
-import { serialize } from 'next-mdx-remote/serialize'
-import { postFilePaths, POSTS_PATH } from '../../../config/mdx'
-import { MDXRemote } from 'next-mdx-remote'
-
-import { Container, Box, Text } from '@chakra-ui/react'
+import { postFilePaths } from '../../../config/mdx'
 
 import Navigation from '@components/Navigation'
 import React from 'react'
 import Head from 'next/head'
+import markdownService from '@services/markdownService'
+import PostView from '@components/PostView'
+import { Post } from 'types/post'
 
 interface PostProps {
-  source: any
-  frontMatter: any
+  post: Post
 }
 
-const PostPage: React.FC<PostProps> = ({ source, frontMatter }) => {
+const PostPage: React.FC<PostProps> = ({ post }) => {
   return (
     <Navigation active="blog">
       <Head>
-        <title>gilmar sales - {frontMatter.title}</title>
+        <title>gilmar sales - {post.title}</title>
       </Head>
-      <Container bg="white" padding="0" maxW="4xl" shadow="md">
-        <Box
-          padding="4"
-          bg="black"
-          color="white"
-          display="flex"
-          alignItems="flex-end"
-          justifyContent="space-between"
-          maxW="4xl"
-        >
-          <Text as="span" fontSize="4xl" fontWeight="bold" padding="0">
-            {frontMatter.title}
-          </Text>
-          <Text as="span">
-            {new Date(frontMatter.date).toLocaleDateString('pt-BR', {
-              dateStyle: 'medium',
-            })}
-          </Text>
-        </Box>
-        <Box padding="4" fontSize="xl">
-          <MDXRemote {...source} />
-        </Box>
-      </Container>
+      <PostView post={post} />
     </Navigation>
   )
 }
 
 export const getStaticProps = async ({ params }) => {
-  const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
-  const source = fs.readFileSync(postFilePath)
-
-  const { content, data } = matter(source)
-
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [emoji, hightlight],
-      rehypePlugins: [],
-    },
-    scope: data,
-  })
+  const post = await markdownService.render(params.slug)
 
   return {
-    props: {
-      source: mdxSource,
-      frontMatter: data,
-    },
+    props: { post: post },
   }
 }
 
 export const getStaticPaths = async () => {
   const paths = postFilePaths
-    // Remove file extensions for page paths
     .map((path) => path.replace(/\.mdx?$/, ''))
-    // Map the path into the static paths object required by Next.js
     .map((slug) => ({ params: { slug } }))
 
   return {

@@ -1,25 +1,10 @@
-import matter from 'gray-matter'
-import emoji from 'remark-emoji'
-import hightlight from 'remark-highlight.js'
-
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote } from 'next-mdx-remote'
-
-import Head from 'next/head'
-import {
-  Box,
-  Image,
-  Heading,
-  Text,
-  keyframes,
-  Container,
-} from '@chakra-ui/react'
-
+import { Box, Image, Heading, Text, keyframes } from '@chakra-ui/react'
 import Navigation from '@components/Navigation'
 import PostView from '@components/PostView'
 import { PostDTO } from 'types/post'
 import React from 'react'
 import postService from '@services/postService'
+import markdownService from '@services/markdownService'
 
 const spin = keyframes`
   from { transform: rotate(0deg); }
@@ -36,17 +21,16 @@ export default function Home(props) {
             left="0"
             position="relative"
             bg="url(/bubble.svg)"
-            bgSize={'200px 200px'}
-            width={200}
-            height={200}
-            padding={6}
+            bgSize={'300px 300px'}
+            width={300}
+            height={300}
             animation={`${spin} infinite 15s linear`}
           ></Box>
           <Image
             position="absolute"
-            top="5"
-            left="5"
-            width="40"
+            top="10%"
+            left="10%"
+            width="80%"
             borderRadius="50%"
             src="https://avatars2.githubusercontent.com/u/7975964"
             alt="gilmar Sales"
@@ -71,23 +55,7 @@ export const getStaticProps = async ({ params }) => {
   const postsDTOs: PostDTO[] = postService.findAllPosts()
 
   const posts = await Promise.all(
-    postsDTOs.map(async (postDTO) => {
-      const { content: postContent, ...rest } = postDTO
-      const { content, data } = matter(postContent)
-
-      const mdxSource = await serialize(content, {
-        mdxOptions: {
-          remarkPlugins: [emoji, hightlight],
-          rehypePlugins: [],
-        },
-        scope: data,
-      })
-
-      return {
-        ...rest,
-        source: mdxSource,
-      }
-    }),
+    postsDTOs.map((postDTO) => markdownService.render(postDTO)),
   )
 
   return {
