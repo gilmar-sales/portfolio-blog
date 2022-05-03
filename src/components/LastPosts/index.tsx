@@ -1,4 +1,5 @@
 import { Box, Container, Tag, Link as ChakraLink } from '@chakra-ui/react'
+import PostTag from '@components/PostTag'
 import Link from 'next/link'
 import React from 'react'
 
@@ -33,12 +34,8 @@ const LastPosts: React.FC<LastPostsProps> = (props) => {
               })}
             </small>
             <div>
-              {post.tags.map((tag, index) => (
-                <Link key={index} href="/">
-                  <Tag colorScheme="blue" marginRight="2" cursor="pointer">
-                    {tag}
-                  </Tag>
-                </Link>
+              {post.tags.map((tag) => (
+                <PostTag key={`tag-${post}-${tag}`} tag={tag} />
               ))}
             </div>
           </Box>
