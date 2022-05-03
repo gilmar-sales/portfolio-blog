@@ -12,7 +12,13 @@ const postsService = () => {
 
     const { content, data } = matter(source)
 
-    const post = { ...data, slug: postSlug, content }
+    const post: PostDTO = {
+      slug: postSlug,
+      title: data.title,
+      date: data.date,
+      tags: data.tags,
+      content: content,
+    }
 
     return post
   }) as PostDTO[]
@@ -40,6 +46,13 @@ const postsService = () => {
     },
     findAllPosts: () => {
       return postsArray
+    },
+    getPostAbstract: (post: PostDTO) => {
+      const words = post.content.split(' ').slice(0, 32)
+      const lastWord = words[words.length - 1]
+      if (lastWord.match(/\*|\$|\#/)) words.pop()
+
+      return words.join(' ') + '...'
     },
   }
 }
