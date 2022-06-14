@@ -6,6 +6,7 @@ import Head from 'next/head'
 import markdownService from '@services/markdownService'
 import PostView from '@components/PostView'
 import { Post } from 'types/post'
+import postService from '@services/postService'
 
 interface PostProps {
   post: Post
@@ -23,7 +24,10 @@ const PostPage: React.FC<PostProps> = ({ post }) => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const post = await markdownService.render(params.slug)
+  const dto = await postService.findPostBySlug(params.slug)
+  const post = await markdownService.render(dto)
+
+  console.log(post);
 
   return {
     props: { post: post },

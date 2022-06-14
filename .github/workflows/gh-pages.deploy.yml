@@ -24,7 +24,7 @@ jobs:
       - name: Install packages
         run: yarn
       - name: Build project
-        run: yarn dev | yarn build
+        run: yarn build
       - name: Export static files
         run: yarn export
       - name: Add .nojekyll file
